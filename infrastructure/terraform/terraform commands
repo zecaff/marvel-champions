@@ -1,0 +1,5 @@
+zecam@JoseLaptop MINGW64 ~/IdeaProjects/MarvelChampionsLib/infrastructure/terraform (develop)
+$ terraform graph > graph.dot
+
+zecam@JoseLaptop MINGW64 ~/IdeaProjects/MarvelChampionsLib/infrastructure/terraform (develop)
+$ cat graph.dot | dot  -Tsvg >  graph.svg

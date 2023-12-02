@@ -1,0 +1,30 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_dynamodb_table.cards (expand)" [label = "aws_dynamodb_table.cards", shape = "box"]
+		"[root] aws_iam_instance_profile.ec2_profile (expand)" [label = "aws_iam_instance_profile.ec2_profile", shape = "box"]
+		"[root] aws_iam_role.s3_ec2 (expand)" [label = "aws_iam_role.s3_ec2", shape = "box"]
+		"[root] aws_iam_role_policy.s3_ec2_policy (expand)" [label = "aws_iam_role_policy.s3_ec2_policy", shape = "box"]
+		"[root] aws_instance.myec2 (expand)" [label = "aws_instance.myec2", shape = "box"]
+		"[root] aws_s3_bucket.images (expand)" [label = "aws_s3_bucket.images", shape = "box"]
+		"[root] aws_security_group.dynamicSG (expand)" [label = "aws_security_group.dynamicSG", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.sg_ports" [label = "var.sg_ports", shape = "note"]
+		"[root] aws_dynamodb_table.cards (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_iam_instance_profile.ec2_profile (expand)" -> "[root] aws_iam_role.s3_ec2 (expand)"
+		"[root] aws_iam_role.s3_ec2 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_iam_role_policy.s3_ec2_policy (expand)" -> "[root] aws_iam_role.s3_ec2 (expand)"
+		"[root] aws_instance.myec2 (expand)" -> "[root] aws_iam_instance_profile.ec2_profile (expand)"
+		"[root] aws_instance.myec2 (expand)" -> "[root] aws_security_group.dynamicSG (expand)"
+		"[root] aws_s3_bucket.images (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_security_group.dynamicSG (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_security_group.dynamicSG (expand)" -> "[root] var.sg_ports"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_dynamodb_table.cards (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_iam_role_policy.s3_ec2_policy (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.myec2 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_s3_bucket.images (expand)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
