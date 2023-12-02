@@ -42,7 +42,8 @@ resource "aws_instance" "myec2" {
       "sudo systemctl enable jenkins",
       "pwd",
       "sudo systemctl start jenkins",
-      "sudo systemctl status jenkins --no-pager"
+      "sudo systemctl status jenkins --no-pager",
+      "sudo dnf install git-all"
     ]
   }
 
@@ -74,3 +75,21 @@ output "private_key" {
 output "key_arn" {
   value     = aws_secretsmanager_secret.jenkins_ssh.arn
 }
+
+/*# Importing the AWS secrets created previously using arn.
+
+data "aws_secretsmanager_secret" "secretmasterDB" {
+  arn = aws_secretsmanager_secret.secretmasterDB.arn
+}
+
+# Importing the AWS secret version created previously using arn.
+
+data "aws_secretsmanager_secret_version" "creds" {
+  secret_id = data.aws_secretsmanager_secret.secretmasterDB.arn
+}
+
+# After importing the secrets storing into Locals
+
+locals {
+  db_creds = jsondecode(data.aws_secretsmanager_secret_version.creds.secret_string)
+}*/
