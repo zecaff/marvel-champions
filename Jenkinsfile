@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh 'docker build --no-cache --build-arg HTTP_PROXY --build-arg https_proxy --build-arg no_proxy -f=src/docker/Dockerfile.jvm -t marvel:marvel_Tag .'
+                sh 'docker build --no-cache --build-arg HTTP_PROXY --build-arg https_proxy --build-arg no_proxy -f=src/main/docker/Dockerfile.jvm -t marvel:marvel_Tag .'
             }
         }
         stage('Test') {
