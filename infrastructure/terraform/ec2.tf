@@ -43,7 +43,10 @@ resource "aws_instance" "myec2" {
       "pwd",
       "sudo systemctl start jenkins",
       "sudo systemctl status jenkins --no-pager",
-      "sudo dnf install git-all"
+      "sudo dnf install git-all",
+      "wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo",
+      "sudo sed -i s/\\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo",
+      "sudo yum install -y apache-maven"
     ]
   }
 
