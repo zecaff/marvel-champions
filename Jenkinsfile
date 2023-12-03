@@ -10,7 +10,7 @@ pipeline {
         stage('Buildd2') {
             steps {
                 sh 'echo "$PATH"'
-                sh 'echo "$$M2_HOME"'
+                sh 'echo "$M2_HOME"'
                 sh 'mvn -v'
             }
         }
