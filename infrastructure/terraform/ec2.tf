@@ -28,6 +28,7 @@ resource "aws_instance" "myec2" {
 
   provisioner "remote-exec" {
     inline = [
+      //install jenkins
       "sudo sudo yum update –y",
       "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
       "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key",
@@ -37,10 +38,15 @@ resource "aws_instance" "myec2" {
       "sudo systemctl enable jenkins",
       "sudo systemctl start jenkins",
       "sudo systemctl status jenkins --no-pager",
+      //install git
       "sudo dnf install git-all -y",
-      "sudo fallocate -l 1G /swapfile",
+      "sudo dd if=/dev/zero of=/swapfile bs=128M count=32",
       "sudo chmod 600 /swapfile",
       "sudo mkswap /swapfile",
+      "sudo swapon /swapfile",
+      "sudo chmod 777 /etc/fstab",
+      "udo echo '/swapfile swap swap defaults 0 0' >> /etc/fstab",
+      //install mvn
       "wget https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz -P /tmp",
       "sudo tar xf /tmp/apache-maven-*.tar.gz -C /opt",
       "sudo ln -s /opt/apache-maven-3.9.5 /opt/maven"
