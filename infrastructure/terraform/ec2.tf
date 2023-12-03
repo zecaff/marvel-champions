@@ -28,25 +28,22 @@ resource "aws_instance" "myec2" {
 
   provisioner "remote-exec" {
     inline = [
-      "pwd",
       "sudo sudo yum update –y",
       "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
       "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key",
       "sudo yum upgrade",
       "sudo dnf install java-17-amazon-corretto -y",
-      "pwd",
-      "echo fails-----------------",
       "sudo yum install jenkins -y",
-      "pwd",
-      "echo fails-----------------",
       "sudo systemctl enable jenkins",
-      "pwd",
       "sudo systemctl start jenkins",
       "sudo systemctl status jenkins --no-pager",
-      "sudo dnf install git-all",
-      "wget https://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo",
-      "sudo sed -i s/\\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo",
-      "sudo yum install -y apache-maven"
+      "sudo dnf install git-all -y",
+      "sudo fallocate -l 1G /swapfile",
+      "sudo chmod 600 /swapfile",
+      "sudo mkswap /swapfile",
+      "wget https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz -P /tmp",
+      "sudo tar xf /tmp/apache-maven-*.tar.gz -C /opt",
+      "sudo ln -s /opt/apache-maven-3.9.5 /opt/maven"
     ]
   }
 
