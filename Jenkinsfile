@@ -7,7 +7,7 @@ pipeline {
   }
 
     stages {
-        stage('Build') {
+        stage('Buildd') {
             steps {
                 sh 'mvn -B -DskipTests -DskipFTs -Dmaven.test.skip=true clean package -Dquarkus.package.type=fast-jar'
             }
