@@ -2,9 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Buildd2') {
             steps {
-                echo 'Building...'
+                sh 'echo "$PATH"'
+                sh 'echo "$M2_HOME"'
+                sh 'mvn -v'
+            }
+        }
+        stage('Buildd') {
+            steps {
+                sh 'mvn -B -DskipTests -DskipFTs -Dmaven.test.skip=true clean package -Dquarkus.package.type=fast-jar'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                sh 'docker build --no-cache --build-arg HTTP_PROXY --build-arg https_proxy --build-arg no_proxy -f=src/main/docker/Dockerfile.jvm -t marvel:marvel_Tag .'
             }
         }
         stage('Test') {
