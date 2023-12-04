@@ -34,7 +34,7 @@ resource "aws_instance" "myec2" {
       "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key",
       "sudo yum upgrade",
       "sudo dnf install java-17-amazon-corretto -y",
-      "pwd ",
+      "pwd  ",
       "echo fails-----------------",
       "sudo yum install jenkins -y",
       "pwd",
