@@ -39,7 +39,7 @@ resource "aws_instance" "myec2" {
       "sudo usermod -a -G docker ec2-user",
       "sudo systemctl enable docker.service",
       "sudo systemctl start docker.service",
-      //install mvn
+      //install mvn 
       "wget https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz -P /tmp",
       "sudo tar xf /tmp/apache-maven-*.tar.gz -C /opt",
       "sudo ln -s /opt/apache-maven-3.9.5 /opt/maven",
