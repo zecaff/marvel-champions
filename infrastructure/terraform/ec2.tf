@@ -13,7 +13,7 @@ resource "aws_key_pair" "generated_key" {
 }
 
 resource "aws_instance" "myec2" {
-  ami                  = "ami-0669b163befffbdfc"  
+  ami                  = "ami-0669b163befffbdfc"   
   instance_type        = "t2.micro"
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
   security_groups      = [aws_security_group.dynamicSG.name]
