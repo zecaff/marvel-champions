@@ -28,6 +28,7 @@ resource "aws_instance" "myec2" {
 
   provisioner "remote-exec" {
     inline = [
+      //install jenkins
       "sudo sudo yum update",
       "sudo yum upgrade",
       //install jdk
