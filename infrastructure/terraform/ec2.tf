@@ -33,7 +33,7 @@ resource "aws_instance" "myec2" {
       "sudo yum upgrade",
       //install jdk
       "sudo dnf install java-17-amazon-corretto -y",
-      //install docker
+      //install docker 
       "sudo yum search docker",
       "sudo yum install docker -y",
       "sudo usermod -a -G docker ec2-user",
