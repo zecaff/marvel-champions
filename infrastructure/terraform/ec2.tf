@@ -28,7 +28,7 @@ resource "aws_instance" "myec2" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo sudo yum update",
+      "sudo sudo yum update", 
       "sudo yum upgrade",
       //install jdk
       "sudo dnf install java-17-amazon-corretto -y",
